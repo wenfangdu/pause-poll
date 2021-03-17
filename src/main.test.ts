@@ -11,7 +11,7 @@ beforeEach(() => {
 describe('pause', () => {
   afterEach(() => expect(setTimeoutSpy).toBeCalledTimes(1))
 
-  test('pause()', async () => {
+  test('pause()', () => {
     pause()
 
     expect(setTimeoutSpy).toBeCalledWith(expect.any(Function), undefined)

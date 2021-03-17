@@ -1,11 +1,11 @@
-interface PromiseWithAbort extends Promise<any> {
+interface PromiseWithAbort extends Promise<unknown> {
   abort: () => void
 }
 
 export const pause = (
   ms?: number,
-  cb?: (...args: any[]) => any,
-  ...args: any[]
+  cb?: (...args: unknown[]) => unknown,
+  ...args: unknown[]
 ): PromiseWithAbort => {
   let timeout
 
@@ -29,13 +29,13 @@ export const poll = async (
   times: number,
   cb?: (
     ...args: [
-      ...args: any[],
-      resolve: (value: any) => any,
-      reject: (reason: any) => any,
+      ...args: unknown[],
+      resolve: (value: unknown) => unknown,
+      reject: (reason: unknown) => unknown,
     ]
-  ) => any,
-  ...args: any[]
-): Promise<any> => {
+  ) => unknown,
+  ...args: unknown[]
+): Promise<unknown> => {
   let result
   const resolve = value => (times = 0) || (result = value)
   const reject = reason => (times = 0) || (result = Promise.reject(reason))
