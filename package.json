@@ -1,0 +1,41 @@
+{
+  "author": "Wenfang Du",
+  "bugs": {
+    "url": "https://github.com/wenfangdu/pause-poll/issues"
+  },
+  "description": "Promisify setTimeout & setInterval",
+  "devDependencies": {
+    "@types/jest": "^26.0.20",
+    "jest": "^26.6.3",
+    "ts-jest": "^26.5.3",
+    "typescript": "^4.2.3"
+  },
+  "homepage": "https://github.com/wenfangdu/pause-poll#readme",
+  "keywords": [
+    "async",
+    "await",
+    "Poll",
+    "Polling",
+    "Promise",
+    "Promisify",
+    "setInterval",
+    "setTimeout",
+    "TypeScript",
+    "Utility"
+  ],
+  "license": "MIT",
+  "main": "src/main.js",
+  "name": "pause-poll",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wenfangdu/pause-poll.git"
+  },
+  "scripts": {
+    "compile": "tsc",
+    "prepublishOnly": "tsc",
+    "test": "jest",
+    "watch": "tsc --watch"
+  },
+  "types": "src/main.d.ts",
+  "version": "0.0.30"
+}

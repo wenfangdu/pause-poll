@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    // recommended
+    "esModuleInterop": true,
+    // recommended
+    "moduleResolution": "Node"
+  },
+  "include": ["src/main.ts"]
+}
