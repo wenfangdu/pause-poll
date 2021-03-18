@@ -48,28 +48,18 @@ var pause = function (ms, cb) {
         args[_i - 2] = arguments[_i];
     }
     var timeout;
-    var promise = new Promise(function (resolve, reject) {
-        timeout = setTimeout(function () { return __awaiter(void 0, void 0, void 0, function () {
-            var _a, error_1;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _b.trys.push([0, 2, , 3]);
-                        _a = resolve;
-                        return [4 /*yield*/, (cb === null || cb === void 0 ? void 0 : cb.apply(void 0, args))];
-                    case 1:
-                        _a.apply(void 0, [_b.sent()]);
-                        return [3 /*break*/, 3];
-                    case 2:
-                        error_1 = _b.sent();
-                        reject(error_1);
-                        return [3 /*break*/, 3];
-                    case 3: return [2 /*return*/];
-                }
-            });
-        }); }, ms);
+    var promise = Object.assign(new Promise(function (resolve, reject) {
+        timeout = setTimeout(function () {
+            try {
+                resolve(cb === null || cb === void 0 ? void 0 : cb.apply(void 0, args));
+            }
+            catch (error) {
+                reject(error);
+            }
+        }, ms);
+    }), {
+        abort: function () { return clearTimeout(timeout); }
     });
-    promise.abort = function () { return clearTimeout(timeout); };
     return promise;
 };
 exports.pause = pause;

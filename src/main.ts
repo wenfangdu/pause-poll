@@ -1,25 +1,26 @@
-interface PromiseWithAbort extends Promise<unknown> {
-  abort: () => void
-}
-
 export const pause = (
   ms?: number,
   cb?: (...args: unknown[]) => unknown,
   ...args: unknown[]
-): PromiseWithAbort => {
+): Promise<unknown> & {
+  abort: () => void
+} => {
   let timeout
 
-  const promise: any = new Promise((resolve, reject) => {
-    timeout = setTimeout(async () => {
-      try {
-        resolve(await cb?.(...args))
-      } catch (error) {
-        reject(error)
-      }
-    }, ms)
-  })
-
-  promise.abort = () => clearTimeout(timeout)
+  const promise = Object.assign(
+    new Promise((resolve, reject) => {
+      timeout = setTimeout(() => {
+        try {
+          resolve(cb?.(...args))
+        } catch (error) {
+          reject(error)
+        }
+      }, ms)
+    }),
+    {
+      abort: () => clearTimeout(timeout),
+    },
+  )
 
   return promise
 }
